@@ -13,7 +13,7 @@ const BurgerConstructor = ({data}) => {
 
   const totalPrice = data.reduce((totalPrice, ingredient) => totalPrice + ingredient.price, 0)
   const [openModal, setOpenModal] = React.useState(false)
-  const [modalData, setModalData] = React.useState([])
+  const [modalData, setModalData] = React.useState(null)
 
 
   return (

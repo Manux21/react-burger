@@ -14,7 +14,7 @@ const BurgerIngredients = ({data}) => {
       <div className={styles.BurgerIngredients}>
 
         <p className="text text_type_main-large">
-          Соберите бургер.
+          Соберите бургер
         </p>
 
         <BurgerTabs/>

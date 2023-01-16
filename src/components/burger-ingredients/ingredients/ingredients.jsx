@@ -6,20 +6,20 @@ import Modal from "../../modal/modal";
 import IngredientDetails from "../../modal/ingredient-details/ingredient-details";
 import PropTypes from "prop-types";
 import {ingredientPropTypes} from "../../util/prop-types";
+import IngredientCategory from "./ingredient-category/ingredient-category";
 
 const Ingredients = ({data}) => {
 
   const [openModal, setOpenModal] = React.useState(false)
 
-  const [modalData, setModalData] = React.useState([])
+  const [modalData, setModalData] = React.useState(null)
 
   const modalHandler = (ingredientData) => {
     setOpenModal(true)
     setModalData(ingredientData)
   }
 
-
-  const getIngredients = type => {
+  const getIngredients = (type) => {
     return data.filter(ingredient => ingredient.type === type)
       .map(ingredient => {
         return (
@@ -34,6 +34,7 @@ const Ingredients = ({data}) => {
       })
   }
 
+
   return (
     <div className={styles.ingredients}>
       {openModal &&
@@ -42,38 +43,9 @@ const Ingredients = ({data}) => {
         </Modal>
       }
 
-      <div className={styles.category}>
-        <div className={styles.categoryHeader}>
-          <p className="text text_type_main-medium">
-            Булки
-          </p>
-        </div>
-         <div className={styles.categoryIngredients}>
-           {getIngredients('bun')}
-        </div>
-      </div>
-
-      <div className={styles.category}>
-        <div className={styles.categoryHeader}>
-          <p className="text text_type_main-medium">
-            Соусы
-          </p>
-        </div>
-        <div className={styles.categoryIngredients}>
-          {getIngredients('sauce')}
-        </div>
-      </div>
-
-      <div className={styles.category}>
-        <div className={styles.categoryHeader}>
-          <p className="text text_type_main-medium">
-            Начинки
-          </p>
-        </div>
-        <div className={styles.categoryIngredients}>
-          {getIngredients('main')}
-        </div>
-      </div>
+      <IngredientCategory getIngredients={getIngredients} type='bun'/>
+      <IngredientCategory getIngredients={getIngredients} type='sauce'/>
+      <IngredientCategory getIngredients={getIngredients} type='main'/>
     </div>
   );
 };
@@ -81,7 +53,5 @@ const Ingredients = ({data}) => {
 Ingredients.propTypes = {
   data: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired,
 }
-
-
 
 export default Ingredients;

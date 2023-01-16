@@ -16,12 +16,10 @@ const Modal = ({children, setOpenModal}) => {
 
   return (
     <ReactPortal>
-          <>
-            <div className={styles.modal}>
-                {children}
-            </div>
-          <ModalOverlay setOpenModal={setOpenModal}/>
-          </>
+        <div className={styles.modal}>
+            {children}
+         </div>
+       <ModalOverlay setOpenModal={setOpenModal}/>
     </ReactPortal>
   );
 };

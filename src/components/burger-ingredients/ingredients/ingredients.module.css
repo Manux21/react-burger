@@ -25,20 +25,3 @@
     cursor: pointer;
 }
 
-.category {
-    display: flex;
-    margin-bottom: 40px;
-    width: 100%;
-    flex-wrap: wrap;
-}
-
-.categoryHeader {
-    width: 100%;
-}
-
-.categoryIngredients {
-    margin: 24px 8px 0 16px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-}
