@@ -1,0 +1,20 @@
+.ingredient {
+    text-align: center;
+    gap: 4px;
+    max-width: 272px;
+    margin-bottom: 32px;
+    position: relative;
+}
+
+.price {
+    display: flex;
+    flex-direction: row;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    justify-content: center;
+    gap: 8px;
+}
+
+.image {
+    margin: 0 16px 0 16px
+}

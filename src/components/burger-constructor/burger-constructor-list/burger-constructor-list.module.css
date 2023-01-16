@@ -1,0 +1,42 @@
+.burgerConstructorIngredientList {
+    height: calc(100vh - 532px);
+    gap: 16px;
+    display: flex;
+    flex-direction:column;
+    overflow: scroll;
+    overflow-x: hidden;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.burgerConstructorList {
+    margin-top: 100px;
+}
+
+.burgerConstructorIngredientList::-webkit-scrollbar {
+    width: 8px;
+    color: #8585AD;
+}
+
+.burgerConstructorIngredientList::-webkit-scrollbar-track {
+    background-color: #2F2F37;
+}
+
+.burgerConstructorIngredientList::-webkit-scrollbar-thumb {
+    background-color: #8585AD;
+}
+
+.constructorElement {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 8px;
+}
+
+.constructorElementBun {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 8px;
+    margin-left: 32px;
+}

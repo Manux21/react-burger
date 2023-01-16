@@ -1,0 +1,44 @@
+.ingredients {
+    margin-top: 40px;
+    height: calc(100vh - 324px);
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.ingredients::-webkit-scrollbar {
+    width: 8px;
+    color: #8585AD;
+}
+
+.ingredients::-webkit-scrollbar-track {
+    background-color: #2F2F37;
+}
+
+.ingredients::-webkit-scrollbar-thumb {
+    background-color: #8585AD;
+}
+
+.ingredient {
+    cursor: pointer;
+}
+
+.category {
+    display: flex;
+    margin-bottom: 40px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.categoryHeader {
+    width: 100%;
+}
+
+.categoryIngredients {
+    margin: 24px 8px 0 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}

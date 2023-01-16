@@ -1,0 +1,27 @@
+.ingredientDetails {
+    position: relative;
+    justify-content: center;
+}
+
+.detailsTittle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.name {
+    margin-top: 16px;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.closeIcon {
+    cursor: pointer;
+}

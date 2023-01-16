@@ -1,0 +1,14 @@
+.burgerConstructor {
+    display: flex;
+    width: 50%;
+    max-width: 50%;
+    flex-direction: column;
+}
+
+.burgerConstructorInfo {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 40px;
+}
+
