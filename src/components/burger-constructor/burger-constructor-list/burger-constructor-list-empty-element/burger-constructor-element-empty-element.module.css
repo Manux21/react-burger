@@ -1,0 +1,31 @@
+.emptyElement {
+    padding: 16px 24px;
+    display: flex;
+    border-radius: var(--common-border-radius-s);
+    background: var(--background-element);
+    max-width: 536px;
+    width: 100%;
+    min-height: 80px;
+    font-family: 'Jet Brains Mono';
+    font-size: 16px;
+    line-height: 24px;
+    color: #F2F2F3;
+    flex-grow: 1;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.top {
+    border-radius: var(--top-constructor-item-border-radius);
+}
+
+.bottom {
+    border-radius: var(--bottom-constructor-item-border-radius);
+}
+
+.text {
+    display: flex;
+    font-size: 16px;
+    line-height: 24px;
+}

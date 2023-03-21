@@ -4,15 +4,21 @@ import styles from './ingredient-details.module.css'
 import IngredientProperties from "./ingredient-properties/ingredient-properties";
 import PropTypes from "prop-types";
 import {ingredientPropTypes} from "../../util/prop-types";
+import {ingredientCloseModal} from "../../../services/actions/ingredient-modal";
+import {useDispatch, useSelector} from "react-redux";
 
-const IngredientDetails = ({data, setOpenModal}) => {
+const IngredientDetails = () => {
+
+  const dispatch = useDispatch()
+  const data = useSelector(store => store.ingredientModal.ingredient)
+
   return (
     <div className={styles.ingredientDetails}>
       <div className={styles.detailsTittle}>
         <p className="text text_type_main-large">
           Детали ингредиента
         </p>
-        <div className={styles.closeIcon} onClick={() => setOpenModal(false)}>
+        <div className={styles.closeIcon} onClick={() => dispatch(ingredientCloseModal())}>
           <CloseIcon type="primary" />
         </div>
       </div>
@@ -27,10 +33,5 @@ const IngredientDetails = ({data, setOpenModal}) => {
 };
 
 
-
-IngredientDetails.propTypes = {
-  data: ingredientPropTypes.isRequired,
-  setOpenModal: PropTypes.func.isRequired
-}
 
 export default IngredientDetails;

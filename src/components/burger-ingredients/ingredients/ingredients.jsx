@@ -4,54 +4,56 @@ import Ingredient from "./ingredient/ingredient";
 import ModalOverlay from "../../modal/modal-overlay";
 import Modal from "../../modal/modal";
 import IngredientDetails from "../../modal/ingredient-details/ingredient-details";
-import PropTypes from "prop-types";
-import {ingredientPropTypes} from "../../util/prop-types";
+
 import IngredientCategory from "./ingredient-category/ingredient-category";
+import {useDispatch, useSelector} from "react-redux";
 
-const Ingredients = ({data}) => {
+import {ingredientCloseModal, ingredientOpenModal} from "../../../services/actions/ingredient-modal";
 
-  const [openModal, setOpenModal] = React.useState(false)
+const Ingredients = ({refSauce, refBun, refMain, handleScroll}) => {
 
-  const [modalData, setModalData] = React.useState(null)
+
+  const data = useSelector(store => store.burgerIngredients.ingredients)
+  const modalIngredient = useSelector(store => store.ingredientModal.ingredient)
+  const dispatch = useDispatch()
 
   const modalHandler = (ingredientData) => {
-    setOpenModal(true)
-    setModalData(ingredientData)
+    dispatch(ingredientOpenModal(ingredientData))
+  }
+
+  const closeModal = () => {
+    dispatch(ingredientCloseModal())
   }
 
   const getIngredients = (type) => {
-    return data.filter(ingredient => ingredient.type === type)
+    return data?.filter(ingredient => ingredient.type === type)
       .map(ingredient => {
         return (
-          <div className={styles.ingredient} onClick={() => modalHandler(ingredient)} key={ingredient._id}>
+          <div className={styles.ingredient} onClick= {() => {
+              modalHandler(ingredient)
+            }
+          } key={ingredient._id}>
             <Ingredient
-              image={ingredient.image}
-              price={ingredient.price}
-              name={ingredient.name}
+              ingredient={ingredient}
             />
           </div>
         )
       })
   }
 
-
   return (
-    <div className={styles.ingredients}>
-      {openModal &&
-        <Modal setOpenModal={setOpenModal}>
-          <IngredientDetails setOpenModal={setOpenModal} data={modalData}/>
+    <div onScroll={handleScroll} className={styles.ingredients}>
+      {modalIngredient &&
+        <Modal closeModal={closeModal}>
+          <IngredientDetails/>
         </Modal>
       }
-
-      <IngredientCategory getIngredients={getIngredients} type='bun'/>
-      <IngredientCategory getIngredients={getIngredients} type='sauce'/>
-      <IngredientCategory getIngredients={getIngredients} type='main'/>
+      <IngredientCategory getIngredients={getIngredients} ref={refBun} type='bun'/>
+      <IngredientCategory getIngredients={getIngredients} ref={refSauce} type='sauce'/>
+      <IngredientCategory getIngredients={getIngredients} ref={refMain} type='main'/>
     </div>
   );
 };
 
-Ingredients.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired,
-}
 
 export default Ingredients;

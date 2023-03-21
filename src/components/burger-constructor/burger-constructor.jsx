@@ -5,28 +5,71 @@ import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import BurgerConstructorTotalPrice from "./burger-constructor-total-price/burger-constructor-total-price";
 import Modal from "../modal/modal";
 import OrderDetails from "../modal/order-details/order-details";
-import PropTypes from 'prop-types';
-import {ingredientPropTypes} from "../util/prop-types";
+import {useDispatch, useSelector} from "react-redux";
+import {useDrop} from "react-dnd";
+import {addBun, addIngredient} from "../../services/actions/burger-constructor";
+import {closeOrder, getOrder} from "../../services/actions/order-modal";
 
-const BurgerConstructor = ({data}) => {
+const BurgerConstructor = () => {
+
+  const closeModal = () => {
+    dispatch(closeOrder())
+  }
+
+  const orderNumber = useSelector(store => store.orderModal.orderNumber)
+
+  const bun = useSelector(store => store.burgerConstructor.bun)
+  const ingredients = useSelector(store => store.burgerConstructor.ingredients)
 
 
-  const totalPrice = data.reduce((totalPrice, ingredient) => totalPrice + ingredient.price, 0)
-  const [openModal, setOpenModal] = React.useState(false)
-  const [modalData, setModalData] = React.useState(null)
+  const totalPrice = React.useMemo(() => {
+    const bunPrice = bun?.price ? bun?.price : 0;
+    const ingredientsPrice = ingredients.reduce((sum, ingredient) => sum + ingredient.price, 0);
+    return 2 * bunPrice + ingredientsPrice;
+  }, [bun?.price, ingredients]);
 
+  const DNDTypes = {
+    BUN: "bun",
+    INGREDIENT: "ingredient",
+    COMPONENT: "component",
+  };
+
+  const dispatch = useDispatch()
+
+  const [,dropBunTopRef] = useDrop({
+    accept: DNDTypes.BUN,
+
+    drop(item) {
+      dispatch(addBun(item))
+    },
+  });
+  const [,dropBunBottomRef] = useDrop({
+    accept: DNDTypes.BUN,
+
+    drop(item) {
+      dispatch(addBun(item))
+    },
+  });
+  const [,dropIngredientRef] = useDrop({
+    accept: DNDTypes.INGREDIENT,
+
+    drop(item) {
+      dispatch(addIngredient(item))
+
+    },
+  });
 
   return (
       <div className={styles.burgerConstructor}>
-        {openModal &&
-          <Modal setOpenModal={setOpenModal}>
-            <OrderDetails setOpenModal={setOpenModal} data={modalData}/>
+        {orderNumber &&
+          <Modal closeModal={closeModal}>
+            <OrderDetails/>
           </Modal>
         }
-          <BurgerConstructorList data={data}/>
+          <BurgerConstructorList dropBunBottomRef={dropBunBottomRef} dropBunTopRef={dropBunTopRef} dropIngredientRef={dropIngredientRef}/>
           <div className={styles.burgerConstructorInfo}>
             <BurgerConstructorTotalPrice totalPrice={totalPrice}/>
-            <Button htmlType="button" type="primary" size="medium" onClick={() => setOpenModal(!openModal)}>
+            <Button htmlType="button" type="primary" size="medium" onClick={() => dispatch(getOrder(300))}>
               Оформить заказ
             </Button>
           </div>
@@ -34,9 +77,6 @@ const BurgerConstructor = ({data}) => {
   );
 };
 
-BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired,
-}
 
 
 export default BurgerConstructor;
