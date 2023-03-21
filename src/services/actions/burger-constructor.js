@@ -6,17 +6,17 @@ import {
   INGREDIENT_COUNT_MINUS,
   INGREDIENT_COUNT_PLUS
 } from "./constants";
-import { v4 as uuid } from "uuid";
+import {v4 as uuid} from "uuid";
 
 
 export const addIngredient = (ingredient) => (dispatch) => {
-    dispatch({
-      type: ADD_INGREDIENT,
-      ingredient,
-      dragId: uuid(),
-    })
+  dispatch({
+    type: ADD_INGREDIENT,
+    ingredient,
+    dragId: uuid(),
+  })
 
-    dispatch(ingredientCountPlus(ingredient._id))
+  dispatch(ingredientCountPlus(ingredient._id))
 }
 
 export const deleteIngredient = (dragId, id) => (dispatch) => {

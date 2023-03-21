@@ -14,14 +14,14 @@ const Modal = ({children, closeModal}) => {
     return () => {
       document.removeEventListener("keydown", closeHandler)
     }
-  },[])
+  }, [])
 
   return (
     <ReactPortal>
-        <div className={styles.modal}>
-            {children}
-         </div>
-       <ModalOverlay/>
+      <div className={styles.modal}>
+        {children}
+      </div>
+      <ModalOverlay/>
     </ReactPortal>
   );
 };

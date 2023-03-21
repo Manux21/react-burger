@@ -32,15 +32,15 @@ const BurgerIngredients = () => {
     setIngredientType(type);
     switch (type) {
       case "bun": {
-        refBun.current?.scrollIntoView({ behavior: "smooth" });
+        refBun.current?.scrollIntoView({behavior: "smooth"});
         break;
       }
       case "sauce": {
-        refSauce.current?.scrollIntoView({ behavior: "smooth" });
+        refSauce.current?.scrollIntoView({behavior: "smooth"});
         break;
       }
       case "main": {
-        refMain.current?.scrollIntoView({ behavior: "smooth" });
+        refMain.current?.scrollIntoView({behavior: "smooth"});
         break;
       }
       default: {
@@ -57,13 +57,12 @@ const BurgerIngredients = () => {
           Соберите бургер
         </p>
 
-        <BurgerTabs  handleClick={handleClick} ingredientType={ingredientType}/>
+        <BurgerTabs handleClick={handleClick} ingredientType={ingredientType}/>
         <Ingredients handleScroll={handleScroll} refBun={refBun} refSauce={refSauce} refMain={refMain}/>
       </div>
     </div>
   );
 };
-
 
 
 export default BurgerIngredients;

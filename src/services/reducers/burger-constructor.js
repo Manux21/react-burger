@@ -7,7 +7,7 @@ export const initialState = {
 
 
 export const constructorReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ADD_INGREDIENT: {
       return {
         ...state,

@@ -2,8 +2,6 @@ import React from 'react';
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './ingredient-details.module.css'
 import IngredientProperties from "./ingredient-properties/ingredient-properties";
-import PropTypes from "prop-types";
-import {ingredientPropTypes} from "../../util/prop-types";
 import {ingredientCloseModal} from "../../../services/actions/ingredient-modal";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -19,7 +17,7 @@ const IngredientDetails = () => {
           Детали ингредиента
         </p>
         <div className={styles.closeIcon} onClick={() => dispatch(ingredientCloseModal())}>
-          <CloseIcon type="primary" />
+          <CloseIcon type="primary"/>
         </div>
       </div>
 
@@ -31,7 +29,6 @@ const IngredientDetails = () => {
     </div>
   );
 };
-
 
 
 export default IngredientDetails;

@@ -29,9 +29,9 @@ const Ingredients = ({refSauce, refBun, refMain, handleScroll}) => {
     return data?.filter(ingredient => ingredient.type === type)
       .map(ingredient => {
         return (
-          <div className={styles.ingredient} onClick= {() => {
-              modalHandler(ingredient)
-            }
+          <div className={styles.ingredient} onClick={() => {
+            modalHandler(ingredient)
+          }
           } key={ingredient._id}>
             <Ingredient
               ingredient={ingredient}

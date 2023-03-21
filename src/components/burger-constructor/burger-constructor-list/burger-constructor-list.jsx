@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {constructorMove, deleteIngredient} from "../../../services/actions/burger-constructor";
 import BurgerConstructorListEmptyElement
   from "./burger-constructor-list-empty-element/burger-constructor-element-empty-element";
-import { Reorder } from "framer-motion"
+import {Reorder} from "framer-motion"
 
 
 const BurgerConstructorList = ({dropBunTopRef, dropBunBottomRef, dropIngredientRef}) => {
@@ -19,50 +19,51 @@ const BurgerConstructorList = ({dropBunTopRef, dropBunBottomRef, dropIngredientR
       <div ref={dropBunTopRef} className={styles.constructorElementBun}>
         {
           bun ?
-        <ConstructorElement
-          text={bun.name}
-          thumbnail={bun.image}
-          price={bun.price}
-          type={'top'}
-          isLocked={true}
-        />
-          : <BurgerConstructorListEmptyElement position={'top'}/>
+            <ConstructorElement
+              text={bun.name + ' (верх)'}
+              thumbnail={bun.image}
+              price={bun.price}
+              type={'top'}
+              isLocked={true}
+            />
+            : <BurgerConstructorListEmptyElement position={'top'}/>
         }
       </div>
 
       <div ref={dropIngredientRef}>
-      {ingredients.length > 0 ?
-        <div className={styles.burgerConstructorIngredientList}>
-          <Reorder.Group className={styles.ingredientsList} axis="y" values={ingredients} onReorder={(newLists) => dispatch(constructorMove(newLists))}>
-        {
-          ingredients.map(ingredient => (
-          <Reorder.Item key={ingredient.dragId} value={ingredient}>
-            <div className={styles.constructorElement} key={ingredient.dragId}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                text={ingredient.name}
-                thumbnail={ingredient.image}
-                price={ingredient.price}
-                handleClose={() => dispatch(deleteIngredient(ingredient.dragId, ingredient._id))}
-              />
-            </div>
-          </Reorder.Item>
-          ))
-        }
-          </Reorder.Group>
-        </div>
-        :
+        {ingredients.length > 0 ?
+          <div className={styles.burgerConstructorIngredientList}>
+            <Reorder.Group className={styles.ingredientsList} axis="y" values={ingredients}
+                           onReorder={(newLists) => dispatch(constructorMove(newLists))}>
+              {
+                ingredients.map(ingredient => (
+                  <Reorder.Item key={ingredient.dragId} value={ingredient}>
+                    <div className={styles.constructorElement} key={ingredient.dragId}>
+                      <DragIcon type="primary"/>
+                      <ConstructorElement
+                        text={ingredient.name}
+                        thumbnail={ingredient.image}
+                        price={ingredient.price}
+                        handleClose={() => dispatch(deleteIngredient(ingredient.dragId, ingredient._id))}
+                      />
+                    </div>
+                  </Reorder.Item>
+                ))
+              }
+            </Reorder.Group>
+          </div>
+          :
           <div className={styles.constructorEmptyElement}>
             <BurgerConstructorListEmptyElement/>
           </div>
-      }
+        }
       </div>
 
       <div ref={dropBunBottomRef} className={styles.constructorElementBun}>
         {
           bun ?
             <ConstructorElement
-              text={bun.name}
+              text={bun.name + ' (низ)'}
               thumbnail={bun.image}
               price={bun.price}
               type={'bottom'}
@@ -74,8 +75,6 @@ const BurgerConstructorList = ({dropBunTopRef, dropBunBottomRef, dropIngredientR
     </div>
   );
 };
-
-
 
 
 export default BurgerConstructorList;

@@ -9,12 +9,12 @@ import {closeOrder} from "../../services/actions/order-modal";
 function ModalOverlay({children}) {
   const dispatch = useDispatch()
   return (
-      <div className={styles.overlay} onClick={() => {
-        dispatch(ingredientCloseModal())
-        dispatch(closeOrder())
-      }}>
-        {children}
-      </div>
+    <div className={styles.overlay} onClick={() => {
+      dispatch(ingredientCloseModal())
+      dispatch(closeOrder())
+    }}>
+      {children}
+    </div>
   );
 }
 

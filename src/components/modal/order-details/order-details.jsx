@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './order-details.module.css'
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import Glow from '../.././../svg/graphics.svg'
+import Glow from "../../../svg/graphics.svg";
 import {closeOrder} from "../../../services/actions/order-modal";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -12,7 +12,7 @@ const OrderDetails = () => {
   return (
     <div className={styles.orderDetails}>
       <div className={styles.orderDetailsClose} onClick={() => dispatch(closeOrder())}>
-        <CloseIcon type="primary" />
+        <CloseIcon type="primary"/>
       </div>
 
       <p className={`text text_type_digits-large ${styles.orderDetailNumber}`}>{orderNumber}</p>

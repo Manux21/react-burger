@@ -8,7 +8,7 @@ import OrderDetails from "../modal/order-details/order-details";
 import {useDispatch, useSelector} from "react-redux";
 import {useDrop} from "react-dnd";
 import {addBun, addIngredient} from "../../services/actions/burger-constructor";
-import {closeOrder, getOrder} from "../../services/actions/order-modal";
+import {closeOrder, getIngredientsRequest} from "../../services/actions/order-modal";
 
 const BurgerConstructor = () => {
 
@@ -21,6 +21,7 @@ const BurgerConstructor = () => {
   const bun = useSelector(store => store.burgerConstructor.bun)
   const ingredients = useSelector(store => store.burgerConstructor.ingredients)
 
+  const arrayId = bun && ingredients && [bun._id, ...ingredients.map(ingredient => ingredient._id)]
 
   const totalPrice = React.useMemo(() => {
     const bunPrice = bun?.price ? bun?.price : 0;
@@ -36,21 +37,21 @@ const BurgerConstructor = () => {
 
   const dispatch = useDispatch()
 
-  const [,dropBunTopRef] = useDrop({
+  const [, dropBunTopRef] = useDrop({
     accept: DNDTypes.BUN,
 
     drop(item) {
       dispatch(addBun(item))
     },
   });
-  const [,dropBunBottomRef] = useDrop({
+  const [, dropBunBottomRef] = useDrop({
     accept: DNDTypes.BUN,
 
     drop(item) {
       dispatch(addBun(item))
     },
   });
-  const [,dropIngredientRef] = useDrop({
+  const [, dropIngredientRef] = useDrop({
     accept: DNDTypes.INGREDIENT,
 
     drop(item) {
@@ -60,23 +61,24 @@ const BurgerConstructor = () => {
   });
 
   return (
-      <div className={styles.burgerConstructor}>
-        {orderNumber &&
-          <Modal closeModal={closeModal}>
-            <OrderDetails/>
-          </Modal>
-        }
-          <BurgerConstructorList dropBunBottomRef={dropBunBottomRef} dropBunTopRef={dropBunTopRef} dropIngredientRef={dropIngredientRef}/>
-          <div className={styles.burgerConstructorInfo}>
-            <BurgerConstructorTotalPrice totalPrice={totalPrice}/>
-            <Button htmlType="button" type="primary" size="medium" onClick={() => dispatch(getOrder(300))}>
-              Оформить заказ
-            </Button>
-          </div>
+    <div className={styles.burgerConstructor}>
+      {orderNumber &&
+        <Modal closeModal={closeModal}>
+          <OrderDetails/>
+        </Modal>
+      }
+      <BurgerConstructorList dropBunBottomRef={dropBunBottomRef} dropBunTopRef={dropBunTopRef}
+                             dropIngredientRef={dropIngredientRef}/>
+      <div className={styles.burgerConstructorInfo}>
+        <BurgerConstructorTotalPrice totalPrice={totalPrice}/>
+        <Button htmlType="button" type='primary' disabled={!bun} size="medium"
+                onClick={() => dispatch(getIngredientsRequest(arrayId))}>
+          Оформить заказ
+        </Button>
       </div>
+    </div>
   );
 };
-
 
 
 export default BurgerConstructor;
