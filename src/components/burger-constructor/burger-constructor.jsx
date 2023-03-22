@@ -21,7 +21,7 @@ const BurgerConstructor = () => {
   const bun = useSelector(store => store.burgerConstructor.bun)
   const ingredients = useSelector(store => store.burgerConstructor.ingredients)
 
-  const arrayId = bun && ingredients && [bun._id, ...ingredients.map(ingredient => ingredient._id)]
+  const arrayId = bun && ingredients && [bun._id, ...ingredients.map(ingredient => ingredient._id), bun._id]
 
   const totalPrice = React.useMemo(() => {
     const bunPrice = bun?.price ? bun?.price : 0;

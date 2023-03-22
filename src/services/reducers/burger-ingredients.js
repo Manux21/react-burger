@@ -50,7 +50,6 @@ export const ingredientsReducer = (state = initialState, action) => {
 
 
     case GET_INGREDIENTS_ERROR: {
-      console.log(action.error)
       return {
         ...state,
         error: action.error,
