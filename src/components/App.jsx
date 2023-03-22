@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import './App.css';
 import AppHeader from "./app-header/app-header";
 import BurgerIngredients from "./burger-ingredients/burger-ingredients";
 import {getIngredientsRequest} from "../services/actions/burger-ingredients";
