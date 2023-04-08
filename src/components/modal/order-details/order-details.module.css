@@ -26,8 +26,9 @@
 
 
 .orderDetailsIcon > svg {
-    height: 120px;
-    width: 120px;
+    height: 320px;
+    width: 320px;
+
 }
 
 .orderDetailsStatus {

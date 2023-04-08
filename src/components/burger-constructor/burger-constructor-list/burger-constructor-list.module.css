@@ -1,5 +1,6 @@
 .burgerConstructorIngredientList {
-    height: calc(100vh - 532px);
+    height: auto;
+    max-height: calc(100vh - 532px);
     gap: 16px;
     display: flex;
     flex-direction:column;
@@ -39,4 +40,16 @@
     gap: 8px;
     margin-right: 8px;
     margin-left: 32px;
+}
+
+.constructorEmptyElement {
+    margin: 16px 0 16px 30px;
+    display: flex;
+}
+
+.ingredientsList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
 }

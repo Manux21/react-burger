@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './ingredient-category.module.css'
 import PropTypes from "prop-types";
+import {forwardRef} from 'react'
 
-const IngredientCategory = ({getIngredients, type}) => {
+const IngredientCategory = forwardRef(({getIngredients, type},ref) => {
 
   const getIngredient = getIngredients(type)
   let IngredientName = '';
@@ -23,7 +24,7 @@ const IngredientCategory = ({getIngredients, type}) => {
   }
 
   return (
-    <div className={styles.ingredientCategory}>
+    <div ref={ref} className={styles.ingredientCategory}>
       <div className={styles.ingredientCategoryHeader}>
         <p className="text text_type_main-medium">
           {IngredientName}
@@ -33,9 +34,8 @@ const IngredientCategory = ({getIngredients, type}) => {
         {getIngredient}
       </div>
     </div>
-  );
-};
-
+  )
+})
 
 IngredientCategory.propTypes = {
   getIngredients: PropTypes.func.isRequired,

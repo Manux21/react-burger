@@ -7,7 +7,7 @@ const BurgerConstructorTotalPrice = ({totalPrice}) => {
   return (
     <div className={styles.totalPrice}>
       <p className="text text_type_digits-medium">{totalPrice}</p>
-      <CurrencyIcon type="primary" />
+      <CurrencyIcon type="primary"/>
     </div>
   );
 };
