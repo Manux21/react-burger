@@ -10,11 +10,10 @@ import {
 
 import { getCookie } from "../../components/util/cookie";
 import { signupRequestAsync } from "../../services/actions/signup";
-// import Preloader from "../../components/Preloader/Preloader";
-
 import styles from "./Register.module.css";
 import Preloader from "../../components/preloader/preloader";
 import {useForm} from "../../hooks/useForm";
+import {profileRequestAsync} from "../../services/actions/profile";
 
 export const RegisterPage = () => {
   const {values, handleChange} = useForm({ name: "", email: "", password: "" });
@@ -26,7 +25,7 @@ export const RegisterPage = () => {
   const register = React.useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(signupRequestAsync(values));
+      dispatch(signupRequestAsync(values)).then(() => dispatch(profileRequestAsync()))
     },
     [dispatch, values],
   );

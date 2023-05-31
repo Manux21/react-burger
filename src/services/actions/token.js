@@ -22,6 +22,7 @@ export const updateTokenRequestError = (error) => {
   };
 };
 
+
 export const updateTokenRequestAsync = (request) => async (dispatch) => {
   try {
     const response = await fetch(`${NORMA_API}/auth/token`, {

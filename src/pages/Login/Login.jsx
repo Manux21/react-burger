@@ -10,23 +10,20 @@ import { useDispatch } from "react-redux";
 import { loginRequestAsync } from "../../services/actions/login";
 
 import styles from "./Login.module.css";
+import {useForm} from "../../hooks/useForm";
 
 export const LoginPage = () => {
 
-  const [form, setForm] = React.useState({ email: "", password: "" });
+  const { values, handleChange } = useForm({ email: "", password: "" });
   const dispatch = useDispatch();
-
-  const onChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
 
 
   const login = React.useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(loginRequestAsync(form));
+      dispatch(loginRequestAsync(values));
     },
-    [dispatch, form],
+    [dispatch, values],
   );
 
 
@@ -36,10 +33,10 @@ export const LoginPage = () => {
         <h1 className="mb-6">Вход</h1>
 
         <div className={`mb-6 ${styles.FormInputs}`}>
-          <EmailInput onChange={onChange} value={form.email} name={"email"} isIcon={false} />
+          <EmailInput onChange={handleChange} value={values.email} name={"email"} isIcon={false} />
           <PasswordInput
-            onChange={onChange}
-            value={form.password}
+            onChange={handleChange}
+            value={values.password}
             name={"password"}
             extraClass="mb-2"
           />

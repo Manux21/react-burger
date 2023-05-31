@@ -44,7 +44,7 @@ export const ResetPasswordPage = () => {
 
     return () => {
       dispatch(resetPasswordInitial());
-      dispatch(forgotPasswordReset());
+      // dispatch(forgotPasswordReset());
     };
   }, [dispatch, forgotAnswer, navigate, resetAnswer, token]);
 

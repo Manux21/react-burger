@@ -13,7 +13,7 @@ import styles from "./Profile.module.css";
 import {useForm} from "../../hooks/useForm";
 
 export const ProfilePage = () => {
-  const {values, setValues, handleChange} = useForm({
+  const {values, setValues, handleChange, isFormEdited, resetForm} = useForm({
     name: "",
     email: "",
     password: "",
@@ -21,7 +21,7 @@ export const ProfilePage = () => {
   const inputRef = React.useRef(null);
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.login.user);
-  const userProfile = useSelector((state) => state.profile.user);
+  const userProfile = useSelector((state) => state.profile.user);;
 
   const onIconClick = () => {
     inputRef.current.focus();
@@ -50,6 +50,7 @@ export const ProfilePage = () => {
     (e) => {
       e.preventDefault();
       dispatch(logoutRequestAsync());
+      resetForm();
     },
     [dispatch],
   );
@@ -130,14 +131,16 @@ export const ProfilePage = () => {
           isIcon={true}
         />
         <PasswordInput onChange={handleChange} value={values.password} name="password" icon="EditIcon" />
-        <div>
-          <Button htmlType="button" type="secondary" size="medium" onClick={cancleClick}>
-            Отмена
-          </Button>
-          <Button htmlType="submit" type="primary" size="medium">
-            Сохранить
-          </Button>
-        </div>
+        {isFormEdited ? (
+          <div>
+            <Button htmlType="button" type="secondary" size="medium" onClick={cancleClick}>
+              Отмена
+            </Button>
+            <Button htmlType="submit" type="primary" size="medium">
+              Сохранить
+            </Button>
+          </div>
+        ) : ''}
       </form>
     </section>
   );
