@@ -3,7 +3,7 @@ import {
   GET_INGREDIENTS_SUCCESS,
   INGREDIENT_COUNT_MINUS,
   INGREDIENT_COUNT_PLUS
-} from "../actions/constants";
+} from "../constants/constants";
 import {initialCount} from "../../components/util/initial-count";
 
 

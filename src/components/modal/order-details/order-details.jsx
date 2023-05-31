@@ -4,19 +4,27 @@ import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import Glow from "../../../svg/graphics.svg";
 import {closeOrder} from "../../../services/actions/order-modal";
 import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {ingredientCloseModal} from "../../../services/actions/ingredient-modal";
 
 const OrderDetails = () => {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate();
+
+  const handleModalClose = () => {
+    dispatch(closeOrder());
+    navigate("/");
+  };
+
   const orderNumber = useSelector(store => store.orderModal.orderNumber)
   return (
     <div className={styles.orderDetails}>
-      <div className={styles.orderDetailsClose} onClick={() => dispatch(closeOrder())}>
-        <CloseIcon type="primary"/>
-      </div>
+      {/*<div className={styles.orderDetailsClose} onClick={handleModalClose}>*/}
+      {/*  <CloseIcon type="primary"/>*/}
+      {/*</div>*/}
 
       <p className={`text text_type_digits-large ${styles.orderDetailNumber}`}>{orderNumber}</p>
-
       <p className={`text text_type_main-medium ${styles.orderDetailIdentificator}`}>
         идентификатор заказа
       </p>
