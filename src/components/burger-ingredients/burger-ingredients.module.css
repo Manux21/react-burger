@@ -9,3 +9,30 @@
 }
 
 
+.ingredients {
+    margin-top: 40px;
+    height: calc(100vh - 324px);
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.ingredients::-webkit-scrollbar {
+    width: 8px;
+    color: #8585AD;
+}
+
+.ingredients::-webkit-scrollbar-track {
+    background-color: #2F2F37;
+}
+
+.ingredients::-webkit-scrollbar-thumb {
+    background-color: #8585AD;
+}
+
+.ingredient {
+    cursor: pointer;
+}
+
