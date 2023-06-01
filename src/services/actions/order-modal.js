@@ -3,7 +3,7 @@ import {
   GET_ORDER_ERROR,
   GET_ORDER_REQUEST,
   GET_ORDER_SUCCESS
-} from "./constants";
+} from "../constants/constants";
 import axios from "axios";
 import {NORMA_API} from "../../components/util/burger-api";
 

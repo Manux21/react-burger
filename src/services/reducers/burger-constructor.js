@@ -1,4 +1,4 @@
-import {ADD_BUN, ADD_INGREDIENT, CONSTRUCTOR_MOVE, DELETE_BUN, DELETE_INGREDIENT} from "../actions/constants";
+import {ADD_BUN, ADD_INGREDIENT, CONSTRUCTOR_MOVE, DELETE_BUN, DELETE_INGREDIENT} from "../constants/constants";
 
 export const initialState = {
   ingredients: [],

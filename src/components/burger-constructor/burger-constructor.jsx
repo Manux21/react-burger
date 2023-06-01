@@ -9,12 +9,16 @@ import {useDispatch, useSelector} from "react-redux";
 import {useDrop} from "react-dnd";
 import {addBun, addIngredient} from "../../services/actions/burger-constructor";
 import {closeOrder, getIngredientsRequest} from "../../services/actions/order-modal";
+import { useNavigate } from "react-router-dom";
 
 const BurgerConstructor = () => {
 
   const closeModal = () => {
     dispatch(closeOrder())
   }
+
+  const user = useSelector((state) => state.profile.user);
+  const navigate = useNavigate();
 
   const orderNumber = useSelector(store => store.orderModal.orderNumber)
 
@@ -60,6 +64,19 @@ const BurgerConstructor = () => {
     },
   });
 
+
+  const handleClick = () => {
+    if (user) {
+      const arrayId = ingredients.reduce(
+        (res, ingredient) => [...res, ingredient._id],
+        [bun?._id],
+      );
+      dispatch(getIngredientsRequest(arrayId));
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <div className={styles.burgerConstructor}>
       {orderNumber &&
@@ -72,7 +89,7 @@ const BurgerConstructor = () => {
       <div className={styles.burgerConstructorInfo}>
         <BurgerConstructorTotalPrice totalPrice={totalPrice}/>
         <Button htmlType="button" type='primary' disabled={!bun} size="medium"
-                onClick={() => dispatch(getIngredientsRequest(arrayId))}>
+                onClick={handleClick}>
           Оформить заказ
         </Button>
       </div>

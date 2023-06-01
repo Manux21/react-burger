@@ -1,4 +1,4 @@
-import {CLOSE_ORDER, GET_ORDER_ERROR, GET_ORDER_SUCCESS} from "../actions/constants";
+import {CLOSE_ORDER, GET_ORDER_ERROR, GET_ORDER_SUCCESS} from "../constants/constants";
 
 
 const initialState = {

@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 
 const AppHeaderButton = ({text, type, Icon}) => {
   return (
+
     <div className={styles.headerButton}>
-      <Icon type={type}/>
-      <a href={''}
-         className={`text text_type_main-default ${type !== 'primary' ? `text_color_inactive ${styles.headerButtonText}` : `${styles.headerButtonTextPrimary}`}`}>
+      <Icon type={!type ? 'secondary' : 'primary'}/>
+      <span
+         className={`text text_type_main-default ${!type ? `text_color_inactive ${styles.headerButtonText}` : `${styles.headerButtonTextPrimary}`}`}>
         {text}
-      </a>
+      </span>
     </div>
   );
 };
@@ -17,7 +18,7 @@ const AppHeaderButton = ({text, type, Icon}) => {
 
 AppHeaderButton.propTypes = {
   text: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.bool.isRequired,
   Icon: PropTypes.elementType.isRequired,
 };
 

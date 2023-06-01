@@ -12,7 +12,6 @@ import {ingredientCloseModal, ingredientOpenModal} from "../../../services/actio
 
 const Ingredients = ({refSauce, refBun, refMain, handleScroll}) => {
 
-
   const data = useSelector(store => store.burgerIngredients.ingredients)
   const modalIngredient = useSelector(store => store.ingredientModal.ingredient)
   const dispatch = useDispatch()

@@ -5,7 +5,7 @@ import {
   DELETE_INGREDIENT,
   INGREDIENT_COUNT_MINUS,
   INGREDIENT_COUNT_PLUS
-} from "./constants";
+} from "../constants/constants";
 import {v4 as uuid} from "uuid";
 
 
