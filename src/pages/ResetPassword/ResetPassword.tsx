@@ -1,7 +1,9 @@
 import React, {FormEvent} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Input, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch} from '../../hooks/useDispatch'
+import {useSelector} from '../../hooks/useSelector'
+
 import {
   resetPasswordInitial,
   resetPasswordRequestAsync,
@@ -18,15 +20,15 @@ export const ResetPasswordPage = () => {
   const {values, handleChange} = useForm({ password: "", token: "" });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const forgotAnswer = useSelector<any>((state) => state.forgotPassword.success);
-  const resetAnswer = useSelector<any>((state) => state.resetPassword.success);
+  const forgotAnswer = useSelector((state) => state.forgotPassword.success);
+  const resetAnswer = useSelector((state) => state.resetPassword.success);
   const token = getCookie("accessToken");
 
 
   const resetPassword = React.useCallback<TResetPassword>(
     (e) => {
       e.preventDefault();
-      dispatch<any>(resetPasswordRequestAsync(values));
+      dispatch(resetPasswordRequestAsync(values));
     },
     [dispatch, values],
   );

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from './order-details.module.css'
 import Glow from "../../../svg/graphics.svg";
 import {useSelector} from "react-redux";
+import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import Preloader from "../../preloader/preloader";
 
 
 type OrderModalState = {
@@ -10,34 +12,31 @@ type OrderModalState = {
     },
 }
 
-const OrderDetails = () => {
+type OrderDetailsModalProps = {
+    orderNumber: number | null;
+};
 
-  const orderNumber = useSelector((store: OrderModalState) => store.orderModal.orderNumber)
-  return (
-    <div className={styles.orderDetails}>
-
-      <p className={`text text_type_digits-large ${styles.orderDetailNumber}`}>{orderNumber}</p>
-      <p className={`text text_type_main-medium ${styles.orderDetailIdentificator}`}>
-        идентификатор заказа
-      </p>
-
-      <div className={styles.orderDetailsIcon}>
-        <img src={Glow} alt="glow"/>
-      </div>
-
-
-      <div className={styles.orderDetailsStatus}>
-        <p className="text text_type_main-default">
-          Ваш заказ начали готовить
-        </p>
-
-        <p className="text text_type_main-default text_color_inactive">
-          Дождитесь готовности на орбитальной станции
-        </p>
-      </div>
-
-    </div>
-  );
+const OrderDetails: FC<OrderDetailsModalProps> = ({orderNumber}) => {
+  // const orderNumber = useSelector((store: OrderModalState) => store.orderModal.orderNumber.number)
+    return (
+        <div className="flex flex-col items-center pt-30 pb-30">
+            <h2 className="text text_type_digits-large text-shadow">
+                {orderNumber ? orderNumber : <Preloader />}
+            </h2>
+            <span className="text text_type_main-medium mt-8">идентификатор заказа</span>
+            <div className="flex items-center justify-center w-[120px] h-[120px] my-[15px] check-bg">
+                <CheckMarkIcon type="primary" />
+            </div>
+            <span className="text text_type_main-default mb-2">
+        {orderNumber ? "Ваш заказ готов" : "Ваш заказ начали готовить"}
+      </span>
+            <span className="text text_type_main-default text_color_inactive">
+        {orderNumber
+            ? 'Можете посмотреть свой заказ в профиле в "Истории заказов"'
+            : "Дождитесь готовности на орбитальной станции"}
+      </span>
+        </div>
+    );
 };
 
 

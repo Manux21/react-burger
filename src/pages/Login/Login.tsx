@@ -1,34 +1,30 @@
-import React, {FormEvent} from "react";
-import { Link } from "react-router-dom"
+import React, { FormEvent } from "react";
+import { Link } from "react-router-dom";
 import {
   Button,
   EmailInput,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import { useDispatch } from "react-redux";
 import { loginRequestAsync } from "../../services/actions/login";
 
 import styles from "./Login.module.css";
-import {useForm} from "../../hooks/useForm";
-
+import { useForm } from "../../hooks/useForm";
+import { useDispatch } from "../../hooks/useDispatch";
 
 type TLogin = (e: FormEvent<HTMLFormElement>) => void;
 
 export const LoginPage = () => {
-
   const { values, handleChange } = useForm({ email: "", password: "" });
   const dispatch = useDispatch();
-
 
   const login = React.useCallback<TLogin>(
     (e) => {
       e.preventDefault();
-      dispatch<any>(loginRequestAsync(values));
+      dispatch(loginRequestAsync(values));
     },
     [dispatch, values],
   );
-
 
   return (
     <section className={styles.LoginPage}>
