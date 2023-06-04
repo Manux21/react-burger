@@ -78,7 +78,6 @@ export const orderNumberRequestAsync: AppThunk =
             ingredients: ingredientsId,
           }),
         });
-        console.log('actions',data)
         dispatch(getOrderNumberSuccess(data.order.number));
         dispatch(constructorReset());
         dispatch(ingredientsCountReset());

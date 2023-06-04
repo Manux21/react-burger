@@ -25,7 +25,6 @@ export const IngredientPage = () => {
 
   React.useEffect(() => {
     dispatch(getIngredientsRequest());
-    console.log(1);
   }, [dispatch]);
 
   return (

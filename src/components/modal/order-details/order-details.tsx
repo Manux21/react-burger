@@ -1,16 +1,7 @@
 import React, {FC} from 'react';
-import styles from './order-details.module.css'
-import Glow from "../../../svg/graphics.svg";
-import {useSelector} from "react-redux";
 import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import Preloader from "../../preloader/preloader";
 
-
-type OrderModalState = {
-    orderModal:{
-        orderNumber: number
-    },
-}
 
 type OrderDetailsModalProps = {
     orderNumber: number | null;

@@ -1,29 +1,29 @@
 import React from 'react';
 import styles from './ingredient-details.module.css'
 import IngredientProperties from "./ingredient-properties/ingredient-properties";
-import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import {TBurgerIngredients} from "../../../services/types/types";
+import {useSelector} from "../../../hooks/useSelector";
 
 
-type BurgerIngredientState = {
-    burgerIngredients: {
-        ingredients: TBurgerIngredients[],
-        isOpen: boolean,
-    }
-}
+// type BurgerIngredientState = {
+//     burgerIngredients: {
+//         ingredients: TBurgerIngredients[],
+//         isOpen: boolean,
+//     }
+// }
 
 const IngredientDetails = () => {
 
   const { id } = useParams();
-  const ingredients = useSelector((state: BurgerIngredientState) => state.burgerIngredients.ingredients);
+  const ingredients = useSelector((state) => state.burgerIngredients.ingredients);
 
   const ingredient = React.useMemo(
     () => ingredients.find((item) => item._id === id),
     [id, ingredients],
   );
 
-  const isModal = useSelector((state : BurgerIngredientState) => state.burgerIngredients.isOpen);
+  // const isModal = useSelector((state) => state.burgerIngredients.isOpen);
 
   if (!ingredient) {
     return null;
@@ -34,7 +34,7 @@ const IngredientDetails = () => {
   }
 
   return (
-    <div className={`${styles.ingredientDetails} ${!isModal ? '' : styles.topMargin}`}>
+    <div className={`${styles.ingredientDetails}`}>
       <div className={styles.detailsTittle}>
         <p className="text text_type_main-large">
           Детали ингредиента

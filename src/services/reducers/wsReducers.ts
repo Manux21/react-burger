@@ -13,7 +13,6 @@ type WSState = {
   orders: ReadonlyArray<TWSOrders>;
   total: number;
   totalToday: number;
-
   error?: Event;
 };
 

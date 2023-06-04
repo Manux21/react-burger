@@ -9,6 +9,8 @@ import OrderCard from "./order-card/order-card";
 import { useDispatch } from "../../hooks/useDispatch";
 import { useSelector } from "../../hooks/useSelector";
 
+import Preloader from "../preloader/preloader";
+
 const HistoryOrders = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
@@ -41,9 +43,13 @@ const HistoryOrders = () => {
 
   return (
     <div className={`flex flex-col gap-y-6 overflow-y-scroll ${hAuto} scrollbar pr-4 w-full`}>
-      {orders.map((order) => (
+      { orders.length ? (
+        orders.map((order) => (
         <OrderCard key={order._id} order={order} />
-      ))}
+        ))
+      ) :
+          <Preloader />
+      }
     </div>
   );
 };
