@@ -1,55 +1,37 @@
-import React, {FC} from 'react';
-import styles from './modal.module.css'
+import { FC, useEffect } from "react";
+import styles from "./modal.module.css";
 import ModalOverlay from "./modal-overlay";
-import ReactPortal from './modal-portal/react-portal';
-import PropTypes from "prop-types";
-import {ingredientCloseModal} from "../../services/actions/ingredient-modal";
-import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {closeOrder} from "../../services/actions/order-modal";
-
+import ReactPortal from "./modal-portal/react-portal";
+import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 type ModalProps = {
-  children: React.ReactNode,
-  closeModal: () => void,
-}
+  children: React.ReactNode;
+  closeModal: () => void;
+};
 
-const Modal: FC<ModalProps> = ({children, closeModal}) => {
-
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-
-  const closeHandler = (event: globalThis.KeyboardEvent) => (event.key === "Escape" ? closeModal() : null);
-
-  const handleModalClose = () => {
-    dispatch(ingredientCloseModal());
-    dispatch(closeOrder())
-    navigate("/");
+const Modal: FC<ModalProps> = ({ children, closeModal }) => {
+  const handleKeyDown = (e: globalThis.KeyboardEvent): void => {
+    if (e.key === "Escape") {
+      closeModal();
+    }
   };
 
-  React.useEffect(() => {
-    document.addEventListener("keydown", closeHandler)
-    return () => {
-      document.removeEventListener("keydown", closeHandler)
-    }
-  }, [])
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <ReactPortal>
       <div className={styles.modal}>
-        <div className={styles.closeIcon} onClick={() => handleModalClose()}>
-          <CloseIcon type="primary"/>
+        <div className={styles.closeIcon} onClick={closeModal}>
+          <CloseIcon type="primary" />
         </div>
         {children}
       </div>
-      <ModalOverlay/>
+      <ModalOverlay onCloseClick={closeModal} />
     </ReactPortal>
   );
 };
-
-Modal.propTypes = {
-  children: PropTypes.element.isRequired,
-}
 
 export default Modal;

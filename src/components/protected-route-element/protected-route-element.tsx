@@ -1,11 +1,11 @@
-import React, {ReactNode, FC} from "react";
+import React, { ReactNode, FC } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 type IProtectedRouteElementProps = {
   children?: ReactNode;
   onlyUnAuth?: boolean;
-}
+};
 
 type ProfileState = {
   profile: {
@@ -14,9 +14,12 @@ type ProfileState = {
       name: string;
     };
   };
-}
+};
 
-const ProtectedRouteElement: FC<IProtectedRouteElementProps> = ({ children, onlyUnAuth = false }) => {
+const ProtectedRouteElement: FC<IProtectedRouteElementProps> = ({
+  children,
+  onlyUnAuth = false,
+}) => {
   const user = useSelector((state: ProfileState) => state.profile.user);
   const location = useLocation();
 
@@ -34,6 +37,3 @@ const ProtectedRouteElement: FC<IProtectedRouteElementProps> = ({ children, only
 };
 
 export default ProtectedRouteElement;
-
-
-
