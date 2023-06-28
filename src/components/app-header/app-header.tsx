@@ -35,7 +35,7 @@ const AppHeader = () => {
         </div>
 
 
-        <NavLink to="/profile">
+        <NavLink id={"username"} to="/profile">
           {({ isActive }) => (
             <AppHeaderButton text='Личный кабинет' type={isActive} Icon={ProfileIcon}/>
           )}
