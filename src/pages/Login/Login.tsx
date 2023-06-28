@@ -41,7 +41,7 @@ export const LoginPage = () => {
           />
         </div>
 
-        <Button htmlType="submit" type="primary" size="medium">
+        <Button id={"button-login"} htmlType="submit" type="primary" size="medium">
           Войти
         </Button>
       </form>

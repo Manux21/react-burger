@@ -49,7 +49,7 @@ const BurgerConstructorList = () => {
 
   return (
     <div className={styles.burgerConstructorList}>
-      <div ref={dropBunTopRef} className={styles.constructorElementBun}>
+      <div id={"drop-top"} ref={dropBunTopRef} className={styles.constructorElementBun}>
         {bun ? (
           <ConstructorElement
             text={bun.name + " (верх)"}
@@ -63,7 +63,7 @@ const BurgerConstructorList = () => {
         )}
       </div>
 
-      <div ref={dropIngredientRef}>
+      <div id={"drop-center"} ref={dropIngredientRef}>
         {ingredients.length > 0 ? (
           <div className={styles.burgerConstructorIngredientList}>
             <Reorder.Group
@@ -96,7 +96,7 @@ const BurgerConstructorList = () => {
         )}
       </div>
 
-      <div ref={dropBunBottomRef} className={styles.constructorElementBun}>
+      <div id={"drop-bottom"} ref={dropBunBottomRef} className={styles.constructorElementBun}>
         {bun ? (
           <ConstructorElement
             text={bun.name + " (низ)"}

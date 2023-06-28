@@ -69,7 +69,7 @@ const BurgerConstructor = () => {
       <BurgerConstructorList/>
       <div className={styles.burgerConstructorInfo}>
         <BurgerConstructorTotalPrice totalPrice={totalPrice}/>
-        <Button htmlType="button" type='primary' disabled={!bun} size="medium"
+        <Button id={"checkout"} htmlType="button" type='primary' disabled={!bun} size="medium"
                 onClick={handleClick}>
           Оформить заказ
         </Button>

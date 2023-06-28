@@ -33,7 +33,7 @@ const Ingredient: FC<IngredientProps> = ({ ingredient }) => {
   });
 
   return (
-    <Link key={_id} to={`/ingredients/${_id}`} state={{ background: location }}>
+    <Link data-ingredient={"ingredient"} key={_id} to={`/ingredients/${_id}`} state={{ background: location }}>
       <div className={styles.ingredient}>
         {type === "bun" && bun?._id === _id ? (
           <Counter count={2} size="default" extraClass="m-1" />

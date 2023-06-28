@@ -10,7 +10,7 @@ type ReactPortalProps = {
 
 const ReactPortal:FC<ReactPortalProps> = ({children}) =>
   ReactDOM.createPortal(
-    <div className={styles.portal}>
+    <div  className={styles.portal}>
       {children}
     </div>,
     portal

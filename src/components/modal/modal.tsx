@@ -23,8 +23,8 @@ const Modal: FC<ModalProps> = ({ children, closeModal }) => {
 
   return (
     <ReactPortal>
-      <div className={styles.modal}>
-        <div className={styles.closeIcon} onClick={closeModal}>
+      <div id="modal" className={styles.modal}>
+        <div id="modal-close" className={styles.closeIcon} onClick={closeModal}>
           <CloseIcon type="primary" />
         </div>
         {children}
